@@ -1,10 +1,10 @@
 Package: clusterConfusion
-Title: What the Package Does (One Line, Title Case)
+Title: Cluster Confusion
 Version: 0.0.1
 Authors@R: 
     person("Pablo", "Andretta Jaskowiak", , "pajaskowiak@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6377-3372"))
-Description: What the package does (one paragraph).
+Description: Clustering validation made simple
 License: LGPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

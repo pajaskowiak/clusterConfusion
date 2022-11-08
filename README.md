@@ -1,5 +1,5 @@
 # clusterConfusion
-
+  
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -14,7 +14,7 @@ This package provides an implementation of the Area Under the (ROC) Curve for cl
 
  *Jaskowiak, P.A., Costa, I.G. & Campello, R.J.G.B. The area under the ROC curve as a measure of clustering quality. Data Mining and Knowledge Discovery 36, 1219–1245 (2022).* Available at: https://doi.org/10.1007/s10618-022-00829-0
 
-More clustering validation measuresand functionalities to come soon.
+More clustering validation measures and cool stuff coming soon.
 
 <!-- Installation -->
 ## Installation
