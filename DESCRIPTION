@@ -1,0 +1,14 @@
+Package: clusterConfusion
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.1
+Authors@R: 
+    person("Pablo", "Andretta Jaskowiak", , "pajaskowiak@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6377-3372"))
+Description: What the package does (one paragraph).
+License: LGPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Depends: R (>= 3.0), precrec, stats, rdist
+Imports: cluster
+Repository: CRAN
