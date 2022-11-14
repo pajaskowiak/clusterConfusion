@@ -145,7 +145,7 @@ print((((dPlot[[1]] | dPlot[[2]] | dPlot[[3]])/
 
 #### Example 4
 
-Maybe you have a list of partitions (even with more than one partition per value of k). No worries. You can evaluate all of them and even get a nice plot on the go. In the middle plot we depict all evaluations from AUCC (note that now we have more than one partition per k). We then fit a line [loess](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/loess) just to have an idea on the trend of the values. The res object has both plost from the right and all AUCC values within it.
+Maybe you have a list of partitions (even with more than one partition per value of k). No worries. You can evaluate all of them and even get a nice plot on the go. In the middle plot we depict all evaluations from AUCC (note that now we have more than one partition per k). We then fit a curve ([loess](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/loess)) just to have an idea on the trend of the values. The res object has both plots from the right and all AUCC values within it.
 
 ```{r}
 library(clusterConfusion)
