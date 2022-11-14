@@ -16,11 +16,11 @@ More clustering validation measures and cool stuff coming soon.
 
 
 <p align="center">
-  <img src="plots/varPlots.pdf" />
+  <img src="plots/varPlots.png" />
 </p>
 
 <p align="center">
-  <img src="https://github.com/pajaskowiak/clusterConfusion/blob/main/plots/multipleK.pdf" />
+  <img src="plots/multipleK.png" />
 </p>
 
 <!-- Installation -->

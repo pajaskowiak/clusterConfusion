@@ -72,8 +72,12 @@
 #'
 #' res <- clusteringROCs(partitions,dataset = ruspini,show = FALSE, decorate = TRUE, alphaPlot = FALSE)
 #'
+#'
+#' # Plot the dataset colored with the best partition labels
+#' dataPlot <- ggplot(ruspini) + geom_point(aes(x,y),color=as.integer(partitions[[which.max(res$auccs)]])) + theme_minimal()
+#'
 #' require(patchwork) #for combining the plots.
-#' res$auccplot + res$rocplot
+#' dataPlot + res$auccplot + res$rocplot
 
 #'
 #'
