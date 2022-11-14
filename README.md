@@ -20,7 +20,7 @@ More clustering validation measures and cool stuff coming soon.
 </p>
 
 <p align="center">
-  <img src="plots/multipleK.pdf" />
+  <img src="https://github.com/pajaskowiak/clusterConfusion/blob/main/plots/multipleK.pdf" />
 </p>
 
 <!-- Installation -->
