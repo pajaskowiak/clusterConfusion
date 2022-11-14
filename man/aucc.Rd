@@ -4,69 +4,97 @@
 \alias{aucc}
 \title{aucc}
 \usage{
-aucc(partition, dataset = NULL, distance = NULL, distanceMethod = "euclidean")
+aucc(
+  partition,
+  dataset = NULL,
+  distance = NULL,
+  distanceMethod = "euclidean",
+  returnRates = FALSE
+)
 }
 \arguments{
-\item{partition}{A hard/crisp partition}
+\item{partition}{A hard/crisp partition (array of integers specifying cluster memberships).}
 
-\item{dataset}{The dataset from which the partition was obtained}
+\item{dataset}{The dataset from which the partition was obtained.}
 
-\item{distance}{Distances between object pairs, obtained with the dist function}
+\item{distance}{The distances between object pairs. This should be obtained with the dist function (please, see ?dist).}
 
-\item{distanceMethod}{The distance method employed to compute distances from the dataset (see ?dist)}
+\item{distanceMethod}{The distance method that should be employed to compute distances from the dataset (please, check ?dist for more information on options). This parameter is used only if distance is not provided, given that they should be computed internally by the aucc function from the dataset.}
+
+\item{returnRates}{If TRUE, TPR and FPR are returned alongside AUCC in an object of class "aucc" (useful for plot purposes). Default is FALSE, in which case the function directly outputs a numeric value that corresponds to the AUCC of the partition.}
 }
 \value{
-The AUCC of the partition (clustering solution)
+If returnRates=FALSE (default), the function returns a numerical value, which corresponds to the AUCC of the partition (clustering solution). If returnRates=TRUE, the function returns an object of class "aucc", with the following components/fields:
+\itemize{
+\item aucc: the AUCC value of the partition.
+\item tpr: the corresponding True Positive Rate (TPR) values.
+\item fpr: the corresponding False Positive Rate (FPR) values.
+}
 }
 \description{
-Computes the Area Under the (ROC) Curve for Clustering (AUCC)
+Computes the Area Under the (ROC) Curve for Clustering (AUCC).
 }
 \details{
-Function computes the Area Under the (ROC) Curve for Clustering (AUCC) of a clustering solution.
+Function computes the Area Under the (ROC) Curve for Clustering (AUCC) of a partition.
 
 You need to provide a partitioning of the data (clustering solution) and one of the following:
-(i)   the dataset from which the partition is originated;
-(ii)  the distance matrix from which the partition was originated.
 
-In case of (i), you may also specify the distance function that will be employed to
-compute the distances internally by aucc, using the distanceMethod parameter. If you do not
-specify any string, it defaults to the Euclidean Distance. Make sure to pass strings accepted
-by the function dist (package stats).
+(i)   the dataset from which the partition was originated;
+
+(ii)  the distance matrix for the data from which the partition was originated.
+
+In case of (i), you may also specify the distance function that will be employed to compute the distances internally by aucc, using the distanceMethod parameter. If you do not specify any string, it defaults to the Euclidean Distance. Make sure to pass strings accepted by the dist function (package stats), see ?dist.
 
 In case of (ii), make sure that the distance matrix was originated/converted with the function
 dist from the package stats, using the parameters diag = FALSE, upper = FALSE (these are the
 defaults for dist). Other than that, you may choose any distance / dissimilarity you find
 appropriate for your data. If you have to perform multiple computations of aucc for the same
 dataset, with different partitions, prefer this approach as computing the distance matrix
-is computationally expensive.
-
-Make sure to validate your partition with the same distance you used to generate it.
+repeatedly can be computationally expensive.
+}
+\note{
+\itemize{
+\item Make sure to validate your partition(s) with the same distance you used to generate it.
+}
 }
 \examples{
+# Example 1 (basic usage, returnRates=FALSE)
 
-\dontrun{
-library(cluster) #for ruspini dataset and k-means
-
-# Computing AUCC from the dataset itself
-
+# Computing AUCC from the dataset itself, partition with k = 2
 clustering <- kmeans(ruspini,2)$cluster
-aucc(clustering, ruspini)
+print(aucc(clustering, dataset = ruspini))
 
 # Computing AUCC from a precomputed distance matrix and selecting best k
-myDistance <- dist(ruspini)
+ruspiniDistances <- dist(ruspini)
 
 auccValues <- c()
 
-for (k in 2:ceiling(sqrt(dim(ruspini)[1]))) {
+#varying k in a reasonable range...
+maxK <- ceiling(sqrt(dim(ruspini)[1]))
+
+for (k in 2:maxK) {
    clustering <- kmeans(ruspini,k)$cluster
-   auccValues <- append(auccValues, aucc(clustering, distance = myDistance))
+   auccValues <- append(auccValues, aucc(clustering, distance = ruspiniDistances))
 }
 
+# Printing the suggested number of clusters and plotting the results
 sprintf('Suggested number of clusters is: \%d', which.max(auccValues)+1)
+plot(2:maxK,auccValues)
 
-}
+# Example 2 (getting full report, returnRates=TRUE)
+
+clustering <- kmeans(ruspini,2)$cluster
+evaluation <- aucc(clustering, dataset = ruspini, returnRates=TRUE)
+
+print(evaluation$aucc)
+
+#calling package function to plot the corresponding ROC Curve
+rocPlot(evaluation)
 
 }
 \references{
-Jaskowiak, P.A., Costa, I.G. & Campello, R.J.G.B. The area under the ROC curve as a measure of clustering quality. Data Mining and Knowledge Discovery 36, 1219–1245 (2022). https://doi.org/10.1007/s10618-022-00829-0
+Jaskowiak, P.A., Costa, I.G. & Campello, R.J.G.B. The area under the ROC curve as a measure of clustering quality. Data Mining and Knowledge Discovery 36, 1219–1245 (2022). \url{https://doi.org/10.1007/s10618-022-00829-0}.
+}
+\seealso{
+\code{\link[=rocPlot]{rocPlot()}} \code{\link[=clusteringROCs]{clusteringROCs()}}
 }
