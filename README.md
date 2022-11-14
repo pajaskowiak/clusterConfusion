@@ -181,6 +181,10 @@ dataPlot + res$auccplot + res$rocplot
 
 ```
 
+<p align="center">
+  <img src="plots/multipleK.png" />
+</p>
+
 <!-- Installation -->
 ## Installation
 
