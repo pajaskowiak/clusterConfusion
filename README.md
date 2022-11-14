@@ -19,6 +19,24 @@ More clustering validation measures and cool stuff coming soon.
 Here you find some examples on how clusterConfusion can be used.
 
 #### Example 1
+Just compute the AUCC value of a single partition.
+
+```{r}
+library(clusterConfusion)
+library(ggplot2)
+
+partition <- kmeans(ruspini,4)$cluster
+
+#Just outputs the value
+aucc(partition, dataset = ruspini)
+
+#Getting a complete 'aucc' object, so we can plot its curve
+res <- aucc(partition, dataset = ruspini, returnRates = TRUE)
+rocPlot(res)
+
+```
+
+#### Example 2
 
 Just a run on the well-known Ruspini dataset. From left to right: best partition suggested by AUCC. The AUCC values for different values of k (number of clusters), the ROC Curves for each one of the partitions. You can get this plots with the followin code:
 
@@ -48,7 +66,7 @@ dataPlot + res$auccplot + res$rocplot
   <img src="plots/singleK.png" />
 </p>
 
-#### Example 2
+#### Example 3
 
 Below you can find Fig. 5 from our paper (see references). It shows six different datasets with increasing variance in the clusters. For each dataset we show the corresponding curves in the right. The higher the cluster variance, the lower the AUCC values for the clusterings.
 
@@ -118,7 +136,7 @@ print((((dPlot[[1]] | dPlot[[2]] | dPlot[[3]])/
          (dPlot[[4]] | dPlot[[5]] | dPlot[[6]]))|rPlot) + plot_layout(widths = c(4,2.5)))
 ```
 
-#### Example 3
+#### Example 4
 
 Maybe you have a list of partitions (even with more than one partition per value of k). No worries. You can evaluate all of them and even get a nice plot on the go. In the middle plot we depict all evaluations from AUCC (note that now we have more than one partition per k). We then fit a line [loess](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/loess) just to have an idea on the trend of the values. The res object has both plost from the right and all AUCC values within it.
 
