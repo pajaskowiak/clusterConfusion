@@ -36,6 +36,13 @@ rocPlot(res)
 
 ```
 
+You will get the following plot (actually, you may get a different one, depending on the k-means random start):
+
+
+<p align="center">
+  <img src="plots/singleROC.png" />
+</p>
+
 #### Example 2
 
 Just a run on the well-known Ruspini dataset. From left to right: best partition suggested by AUCC. The AUCC values for different values of k (number of clusters), the ROC Curves for each one of the partitions. You can get this plots with the followin code:
