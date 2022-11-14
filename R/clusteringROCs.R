@@ -218,7 +218,7 @@ clusteringROCs <- function(partitions, dataset = NULL, distance = NULL, distance
     pltAUCCs <- ggplot2::ggplot(linePlot, aes(linePlot,x=kOriginalOrder, y=auccsOriginalOrder)) +
       geom_point(alpha = auccsOriginalOrder) +
       geom_line() +
-      #geom_smooth(method = 'loess', formula = y~x) +
+      #geom_smooth(method = 'stats::loess', formula = y~x) +
       geom_point(data=linePlot[which.max(linePlot[,1]),],
                  aes(x=kOriginalOrder, y=auccsOriginalOrder),
                  size=3, colour='gold') +
@@ -233,7 +233,7 @@ clusteringROCs <- function(partitions, dataset = NULL, distance = NULL, distance
     pltAUCCs <- ggplot2::ggplot(linePlot, aes(linePlot,x=kOriginalOrder, y=auccsOriginalOrder)) +
       geom_point(col=ifelse(kOriginalOrder<kbest,'blue','red')) +
       #geom_line() +
-      geom_smooth(method = 'loess', formula = y~x, span = 0.3, col = 'darkgreen') +
+      geom_smooth(method = 'lm', formula = y~x, span = 0.3, col = 'darkgreen', na.rm = TRUE) +
       geom_point(data=linePlot[which.max(linePlot[,1]),],
                  aes(x=kOriginalOrder, y=auccsOriginalOrder),
                  size=3, colour='gold') +
