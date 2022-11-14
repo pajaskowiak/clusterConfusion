@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<h3 align="center">Cluster Confusion</h3>
+<h1 align="center">Cluster Confusion</h3>
 <p align="center"> Clustering validation that makes sense.  </p>
 </div>
 
