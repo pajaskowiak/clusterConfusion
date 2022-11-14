@@ -14,6 +14,15 @@ This package provides an implementation of the Area Under the (ROC) Curve for cl
 
 More clustering validation measures and cool stuff coming soon.
 
+
+<p align="center">
+  <img src="plots/varPlots.pdf" />
+</p>
+
+<p align="center">
+  <img src="plots/multipleK.pdf" />
+</p>
+
 <!-- Installation -->
 ## Installation
 
@@ -30,7 +39,15 @@ Just open an R Session and check usage examples as below:
 
 ```{r}
 library(clusterConfusion)
+
+# Main AUCC function
 ?aucc
+
+# Function to plot ROC Curves from clustering solutions
+?rocPlot
+
+# Compute AUCC and make plots from list of partitions
+?clusteringROCs
 ```
 
 
@@ -49,3 +66,5 @@ If you also use our implementation, consider citing our git repository as well.
 Pablo Andretta Jaskowiak - pablo.andretta@ufsc.br
 
 Project Link: [https://github.com/pajaskowiak/clusterConfusion](https://github.com/pajaskowiak/clusterConfusion)
+
+With thanks to James Nagai for help with some ggplots details.
