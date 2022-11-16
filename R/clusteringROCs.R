@@ -106,6 +106,12 @@ clusteringROCs <- function(partitions, dataset = NULL, distance = NULL, distance
     if (class(partitions) != 'list') {
       stop('This function is supposed to be used with a list of partitions. For single partition evaluations use aucc.')
     }
+
+    #at least one partition in the list is not made of integers...
+    if (!all(unlist(lapply(partitions, is.integer)))) {
+      partitions <- lapply(partitions, factor)
+      partitions <- lapply(partitions, as.integer)
+    }
   }
 
   if (!is.null(distance) && !is.null(dataset)) {

@@ -105,6 +105,14 @@ aucc <- function(partition, dataset = NULL, distance = NULL, distanceMethod = 'e
 
   }
 
+  #partition is not made of integers...
+  if (!is.integer(partition)) {
+    if (!is.factor(partition)) {
+      partition  <- factor(partition)
+    }
+    partition  <- as.integer(partition)
+  }
+
   if (!is.null(dataset) && is.null(distance)) {
     if (dim(dataset)[1] != length(partition)) {
       stop('The number of objects has to the be the same from partition.')
