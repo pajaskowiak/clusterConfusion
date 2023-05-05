@@ -230,3 +230,5 @@ Pablo Andretta Jaskowiak - pablo.andretta@ufsc.br
 Project Link: [https://github.com/pajaskowiak/clusterConfusion](https://github.com/pajaskowiak/clusterConfusion)
 
 With thanks to [James Nagai](https://jsnagai.github.io/) for help with some ggplots details.
+
+More [here](https://pajaskowiak.github.io/)
